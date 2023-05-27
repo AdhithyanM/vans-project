@@ -17,8 +17,16 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+
+          {/* <Route path="vans">
+            <Route index element={<Vans />} />
+            <Route path=":id" element={<VanDetail />} />
+          </Route> */}
+          {/* Don't use above way to represent nested routes if there is no layout that has to be present for child routes */}
+
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VanDetail />} />
+
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/host/income" element={<Income />} />
