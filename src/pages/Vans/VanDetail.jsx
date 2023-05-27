@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const VanDetail = () => {
   const { id } = useParams();
@@ -13,6 +13,9 @@ const VanDetail = () => {
 
   return (
     <div className="van-detail-container">
+      <NavLink to=".." relative="path" className="back-button">
+        &larr; <span>Back to all vans</span>
+      </NavLink>
       {van ? (
         <div className="van-detail">
           <img src={van.imageUrl} alt="" />
