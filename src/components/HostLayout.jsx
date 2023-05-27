@@ -13,6 +13,7 @@ const HostLayout = () => {
       <nav className="host-nav">
         <NavLink
           to="/host"
+          end
           style={({ isActive }) => (isActive ? activeStyles : null)}
         >
           Dashboard
