@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Outlet } from "react-router-dom";
 
 const HostVansDetail = () => {
   const [van, setVan] = useState(null);
@@ -31,6 +31,13 @@ const HostVansDetail = () => {
           </div>
         </div>
       </div>
+
+      <nav>
+        <Link to=".">Info</Link>
+        <Link to="./photos">Photos</Link>
+        <Link to="./pricing">Pricing</Link>
+      </nav>
+      <Outlet />
     </section>
   );
 };
