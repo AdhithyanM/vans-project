@@ -17,6 +17,10 @@ const HostVansDetail = () => {
 
   return (
     <section>
+      <Link to="/host/vans" className="back-button">
+        &larr; <span>Back to all vans</span>
+      </Link>
+
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
           <img src={van.imageUrl} alt="" />
