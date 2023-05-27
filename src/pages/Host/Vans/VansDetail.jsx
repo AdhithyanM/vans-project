@@ -17,7 +17,7 @@ const HostVansDetail = () => {
 
   return (
     <section>
-      <Link to="/host/vans" className="back-button">
+      <Link to="../vans" className="back-button">
         &larr; <span>Back to all vans</span>
       </Link>
 
