@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import { getVans } from "../../api";
+
+export function loader() {
+  // throw new Error();
+  return getVans();
+}
 
 const Vans = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const vans = useLoaderData();
   const typeFilter = searchParams.get("type");
 
   const filteredVans = typeFilter
     ? vans.filter((van) => van.type === typeFilter)
     : vans;
-
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      try {
-        const data = await getVans();
-        setVans(data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadVans();
-  }, []);
 
   const vanElements = filteredVans.map((van) => (
     <div key={van.id} className="van-tile">
@@ -47,14 +34,6 @@ const Vans = () => {
       </Link>
     </div>
   ));
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (error) {
-    return <h1>There was some error occured: {error.message}</h1>;
-  }
 
   return (
     <div className="van-list-container">
