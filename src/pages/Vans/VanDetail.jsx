@@ -7,6 +7,7 @@ const VanDetail = () => {
   const [van, setVan] = useState(null);
 
   const prevPageSearch = location.state?.search || "";
+  const type = location.state?.type || "all";
 
   useEffect(() => {
     fetch(`/api/vans/${id}`)
@@ -21,7 +22,7 @@ const VanDetail = () => {
         relative="path"
         className="back-button"
       >
-        &larr; <span>Back to all vans</span>
+        &larr; <span>Back to {type} vans</span>
       </NavLink>
       {van ? (
         <div className="van-detail">
