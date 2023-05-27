@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useLocation } from "react-router-dom";
 
 const VanDetail = () => {
   const { id } = useParams();
+  const location = useLocation(); // has details about current location & any state that's passed from previous link
   const [van, setVan] = useState(null);
+
+  const prevPageSearch = location.state?.search || "";
 
   useEffect(() => {
     fetch(`/api/vans/${id}`)
@@ -13,7 +16,11 @@ const VanDetail = () => {
 
   return (
     <div className="van-detail-container">
-      <NavLink to=".." relative="path" className="back-button">
+      <NavLink
+        to={`..${prevPageSearch}`}
+        relative="path"
+        className="back-button"
+      >
         &larr; <span>Back to all vans</span>
       </NavLink>
       {van ? (
