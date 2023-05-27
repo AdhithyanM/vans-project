@@ -1,16 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <header>
-      <Link className="site-logo" to="/">
+      <NavLink className="site-logo" to="/">
         #VanLife
-      </Link>
+      </NavLink>
       <nav>
-        <Link to="/host">Host</Link>
-        <Link to="/vans">Vans</Link>
-        <Link to="/about">About</Link>
+        <NavLink
+          to="/host"
+          className={({ isActive }) => (isActive ? "active-link" : null)}
+        >
+          Host
+        </NavLink>
+        <NavLink
+          to="/vans"
+          className={({ isActive }) => (isActive ? "active-link" : null)}
+        >
+          Vans
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) => (isActive ? "active-link" : null)}
+        >
+          About
+        </NavLink>
       </nav>
     </header>
   );
