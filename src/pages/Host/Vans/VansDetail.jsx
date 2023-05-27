@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, Outlet } from "react-router-dom";
+import { NavLink, useParams, Outlet } from "react-router-dom";
 
 const HostVansDetail = () => {
+  const activeStyles = {
+    fontWeight: "bold",
+    textDecoration: "underline",
+    color: "#161616",
+  };
+
   const [van, setVan] = useState(null);
   const { id } = useParams();
 
@@ -17,9 +23,9 @@ const HostVansDetail = () => {
 
   return (
     <section>
-      <Link to=".." relative="path" className="back-button">
+      <NavLink to=".." relative="path" className="back-button">
         &larr; <span>Back to all vans</span>
-      </Link>
+      </NavLink>
 
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
@@ -30,14 +36,30 @@ const HostVansDetail = () => {
             <h4>${van.price}/day</h4>
           </div>
         </div>
+        {/* Host van detail nav bar */}
+        <nav className="host-van-detail-nav">
+          <NavLink
+            to="."
+            end
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+          >
+            Details
+          </NavLink>
+          <NavLink
+            to="./photos"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+          >
+            Photos
+          </NavLink>
+          <NavLink
+            to="./pricing"
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+          >
+            Pricing
+          </NavLink>
+        </nav>
+        <Outlet />
       </div>
-
-      <nav>
-        <Link to=".">Info</Link>
-        <Link to="./photos">Photos</Link>
-        <Link to="./pricing">Pricing</Link>
-      </nav>
-      <Outlet />
     </section>
   );
 };
