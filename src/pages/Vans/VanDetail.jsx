@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useParams, useLocation } from "react-router-dom";
+import React from "react";
+import { NavLink, useLocation, useLoaderData } from "react-router-dom";
+import { getVans } from "../../api";
+
+export function loader({ params }) {
+  // loader function will not have access to hooks. hence we use this params object provided by react-router
+  return getVans(params.id);
+}
 
 const VanDetail = () => {
-  const { id } = useParams();
   const location = useLocation(); // has details about current location & any state that's passed from previous link
-  const [van, setVan] = useState(null);
+  const van = useLoaderData();
 
   const prevPageSearch = location.state?.search || "";
   const type = location.state?.type || "all";
-
-  useEffect(() => {
-    fetch(`/api/vans/${id}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, [id]);
 
   return (
     <div className="van-detail-container">
