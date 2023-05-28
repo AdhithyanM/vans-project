@@ -1,5 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
+import AvatarImage from "../assets/images/avatar-icon.png";
 
 const Navbar = () => {
   return (
@@ -26,6 +28,9 @@ const Navbar = () => {
         >
           About
         </NavLink>
+        <Link to="login" className="login-link">
+          <img src={AvatarImage} className="login-icon" alt="" />
+        </Link>
       </nav>
     </header>
   );
